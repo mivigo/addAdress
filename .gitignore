@@ -1,0 +1,17 @@
+.DS_Store
+.env
+.env
+.idea/
+/node_modules
+/public/storage
+/public/css
+/public/js
+/vendor
+Homestead.json
+Homestead.yaml
+Session.vim
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-v][a-z]
+[._]sw[a-p]
+tags
