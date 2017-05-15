@@ -1,10 +1,19 @@
 <div class="field">
 
     {!! Form::label('name', 'NAME *: ') !!}
-    {!! Form::text('name', 'home addresses', ['class' =>
-    'form-control','placeholder'=>'Name']) !!}
-    </div>
+    <select name="name" id="name" class="vl_empty selectpicker">
+        <option>Work Address</option>
+        <option>Home Address</option>
+    </select>
+    {{--<select name="name" id="name" size="10" data-live-search="true"--}}
+            {{--data-live-search-style="startsWith" class="selectpicker">--}}
+        {{--<option>n/a</option>--}}
+        {{--@foreach ($names as $name)--}}
+            {{--<option value="{{ $name->id }}">{{ $name->name }}</option>--}}
+        {{--@endforeach--}}
+    {{--</select>--}}
 
+</div>
 <div class="field">
     {!! Form::label('city', 'YOUR CITY *: ') !!}
     <select name="city" id="city" class="vl_empty selectpicker">
@@ -37,7 +46,7 @@
    'form-control','placeholder'=>'House Name / Number']) !!}
 </div>
 <div class="field">
-    {!! Form::label('additional', 'additional information: ') !!}
+    {!! Form::label('additional', 'ADDITIONAL INFORMATION: ') !!}
     {!! Form::text('additional', null, ['class' => 'vl_empty',
    'form-control','placeholder'=>'Additional information']) !!}
 </div>

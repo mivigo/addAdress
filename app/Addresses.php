@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Addresses extends Model
 {
-//    protected $primaryKey = 'id';
-//    protected $table = 'addresses';
+    protected $primaryKey = 'id';
+    protected $table = 'addresses';
 //    public $timestamps = false;
     protected $fillable =[
         'name',
@@ -18,7 +18,7 @@ class Addresses extends Model
         'additional',
     ];
     
-//    public function user() {
-//        return $this->belongsTo('App\User');
-//    }
+    public function name() {
+        return $this->belongsTo('App\Name');
+    }
 }

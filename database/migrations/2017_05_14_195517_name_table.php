@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddadressTable extends Migration
+class NameTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,10 @@ class AddadressTable extends Migration
      */
     public function up()
     {
-        Schema::create('addresses', function (Blueprint $table) {
+        Schema::create('name', function (Blueprint $table) {
 
             $table->increments('id')->unsigned();
-//            $table->integer('name_id');
             $table->string('name');
-            $table->string('city');
-            $table->string('area');
-            $table->string('street');
-            $table->text('house');
-            $table->text('additional')->nullable();
 
             $table->timestamps();
         });

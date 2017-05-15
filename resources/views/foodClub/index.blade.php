@@ -2,10 +2,12 @@
 <html>
 <head>
     <meta charset="UTF-8">
-
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>address ::: user office ::: foodclub</title>
     <script src="http://maps.google.com/maps/api/js"></script>
     <script src="js/gmaps.js"></script>
+    <script src="//code.jquery.com/jquery.js" ></script>
+
         <style type="text/css">
             #map {
                 width: 400px;
@@ -15,6 +17,14 @@
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,700italic,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <link href="css/default.css" rel="stylesheet" type="text/css" />
+
+    {{--<script type="text/javascript">--}}
+        {{--//flash--}}
+        {{--$('#flash-overlay-modal').modal();--}}
+        {{--$('div.alert').not('.alert-important').delay(3000).slideUp(300);--}}
+    {{--</script>--}}
+    {{--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">--}}
+    {{--//flash--}}
 
 </head>
 
@@ -152,6 +162,7 @@
                             <div class="l_col adrs">
                                 <h2>Add New Address</h2>
 
+
                                 @include('flash::message')
 
                                 {!! Form::open(array(
@@ -167,28 +178,53 @@
                             <div class="r_col">
                                 <h2>My Addresses</h2>
                                 <div id="map"></div>
-                                <script>
-                                    var map = new GMaps({
-                                        el: '#map',
-                                        lat: -12.043333,
-                                        lng: -77.028333
-                                    });
-                                </script>
                                 <div class="uo_adr_list">
-                                    <div class="item">
-                                        <h3>HOME Address</h3>
-                                        <p>Dubai, Business Bay Area, Sheikh Zayed Road, Single </p>
-                                        <div class="actbox">
-                                            <a href="#" class="bcross"></a>
-                                        </div>
+                                    <script>
+                                        var map = new GMaps({
+                                            el: '#map',
+                                            lat: -12.043333,
+                                            lng: -77.028333
+                                        });
+                                    </script>
+                                    <script>
+                                        function close (classname) {
+                                            $('.' + classname).remove();                                        }
+                                    </script>
+
+                                    @if (!empty($addresses))
+                                        <div class="work item">
+                                            <h3>Work Addresses</h3>
+                                        @foreach( $addresses as $address )
+                                                {{--<h3>{{ $address->name_id ? $address->name->name : 'n/a' }}</h3>--}}
+                                                @if ($address->name == 'Work Address')
+                                                    <p> {{ $address->city }}, {{ $address->area }}, {{ $address->street }},
+                                                        {{ $address->house }}
+                                                        @if (!empty($address->additional)), {{ $address->additional }}
+                                                            @else {{ '' }} @endif</p>
+                                                    <div class="actbox" >
+                                                        <a onclick="self.close('work')" class="bcross"></a>
+                                                    </div>
+                                                @endif
+                                        @endforeach
                                     </div>
-                                    <div class="item">
-                                        <h3>Work Address</h3>
-                                        <p>Dubai, Business Bay Area, Sheikh Zayed Road, Single<br/>Business Tower, Suite 2204</p>
-                                        <div class="actbox">
-                                            <a href="#" class="bcross"></a>
-                                        </div>
+                                    <div class="item home">
+                                        <h3>Home Addresses</h3>
+                                        @foreach( $addresses as $address )
+                                            {{--<h3>{{ $address->name_id ? $address->name->name : 'n/a' }}</h3>--}}
+                                            @if ($address->name == 'Home Address')
+
+                                                <p>{{ $address->city }}, {{ $address->area }}, {{ $address->street }},
+                                                    {{ $address->house }}
+                                                    @if (!empty($address->additional)), {{ $address->additional }}
+                                                    @else {{ '' }} @endif</p>
+                                                <div class="actbox" id='close'>
+                                                    <a onclick="self.close('home')" class="bcross"></a>
+                                                </div>
+
+                                            @endif
+                                        @endforeach
                                     </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -275,38 +311,25 @@
             </div>
         </div>
     </div>
-
-
 </body>
 </html>
 
-<script type="text/javascript">
-    var map;
-    $(document).ready(function(){
-        prettyPrint();
-        map = new GMaps({
-            div: '#map',
-            lat: -12.043333,
-            lng: -77.028333
-        });
-    });
-</script>
 
-<script>
-    new GMaps({
-        div: '#map',
-        lat: -12.043333,
-        lng: -77.028333
-    });
+{{--<script>--}}
+    {{--new GMaps({--}}
+        {{--div: '#map',--}}
+        {{--lat: -12.043333,--}}
+        {{--lng: -77.028333--}}
+    {{--});--}}
 
-    map.addMarker({
-        lat: -12.043333,
-        lng: -77.028333,
-        title: 'Lima',
-        click: function(e) {
-            alert('You clicked in this marker');
-        }
-    });</script>
+    {{--map.addMarker({--}}
+        {{--lat: -12.043333,--}}
+        {{--lng: -77.028333,--}}
+        {{--title: 'Lima',--}}
+        {{--click: function(e) {--}}
+            {{--alert('You clicked in this marker');--}}
+        {{--}--}}
+    {{--});</script>--}}
 
 
 
